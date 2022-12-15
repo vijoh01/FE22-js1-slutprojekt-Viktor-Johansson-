@@ -13,25 +13,40 @@
     <form action="" id="search">
       <input type="search" id="search-input" placeholder="Search.." />
       <select name="img-size" id="img-size">
-        <option selected disabled value="n">Size (Small)</option>
+        <option selected value="n">Size (Small)</option>
         <option value="n">Small</option>
         <option value="z">Medium</option>
         <option value="b">Large</option>
       </select>
       <select name="display-amount" id="display-amount">
-        <option selected disabled value="100">Amount (100)</option>
+        <option selected value="100">Amount (100)</option>
         <option value="100">100</option>
         <option value="200">200</option>
         <option value="500">500</option>
       </select>
       <select name="sort" id="sort">
-        <option selected disabled value="relevance">Sort (Relevance)</option>
+        <option selected value="relevance">Sort (Relevance)</option>
         <option value="relevance">Relevance</option>
         <option value="interestingness-desc">Interestingness</option>
+        <option value="date-posted-desc">Date Posted</option>
       </select>
       <button>search</button>
     </form>
+    <div class="search-container">
+     
+    </div>
+    <div class="loading-container">
+        <div class="loading"></div>
+    </div>
+    <div class="img-popup-container">
 
-    <div id="search-container"></div>
+      <img class="img-display">
+        
+      </img>
+    
+    </div>
+
+    
+    
   </body>
 </html>

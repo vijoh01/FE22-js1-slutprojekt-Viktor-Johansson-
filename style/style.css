@@ -1,38 +1,75 @@
-#search-container {
-    display: flex;
-    justify-content: center;
-
+* {
+    margin: 0;
+    padding: 0;
 }
-#img-container {
+
+.img-container {
+    margin-top: 3%;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    filter: drop-shadow(0 0 0.75rem black);
     
 }
 
-#column {
-    flex: 25%;
-    max-width: 25%;
-    padding: 0 4px;
-    border: black 1px solid;
+.img-display {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}   
+
+.loading-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: none;
+    padding: 2rem;
+    border: 1px white solid;
 }
 
-#column img {
+.loading {
+    padding: 2rem;
+    background-color: orange;
+}
+
+.img-popup-container {
+    display: none;
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%,-45%); 
+    overflow: auto; 
+    max-height: 80%;
+  }
+
+.column {
+    max-width: 25%;
+    padding: 0 2.5px;
+}
+
+.column img {
     margin-top: 8px;
     vertical-align: middle;
     width: 100%;
+    z-index: -1;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.column img:hover {
+    filter: blur(1.5px);
 }
 
 @media screen and (max-width: 800px) {
     .column {
-      flex: 50%;
       max-width: 50%;
     }
   }
   
   @media screen and (max-width: 600px) {
     .column {
-      flex: 100%;
       max-width: 100%;
     }
   }
@@ -41,13 +78,15 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.63);
+    background-color: rgba(0, 0, 0, 0.883);
 }
 
 #search {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    background-color: rgba(0, 0, 0, 0.63);
 }
 
 #search input {
@@ -55,16 +94,18 @@ body {
     font-size: 1.5rem;
     width: 20%;
     height: 3rem;
-    border: 1px solid black;
+    border: 1px solid rgba(255, 255, 255, 0.409);
     color: white;
     background-color: rgba(0, 0, 0, 0.119);
     border-radius: 0.5rem 0 0 0.5rem;
+    padding-left: 2rem;
+    min-width: 10rem;
 }
 
 #search button {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.464);
-    border: 1px black solid;
+    border: 1px solid rgba(255, 255, 255, 0.409);
     color: white;
     border-radius: 0.5rem;
     width: 5rem;
@@ -77,9 +118,10 @@ body {
 }
 
 #img-size, #display-amount, #sort {
+    padding: 0 1rem 0 1rem;
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.464);
-    border: 1px black solid;
+    border: 1px solid rgba(255, 255, 255, 0.409);
     color: white;
     
     height: 3rem;

@@ -1,41 +1,75 @@
 $(() => {
-    let searchField = document.querySelector('#search-input');
-    
-    $('#search button').click((e) => { 
+    $('#search button').click((e) => {
+        $.fn.loading(true);
+
         e.preventDefault();
-        let container = document.querySelector('#search-container');
-        let size = document.querySelector('#img-size');
-        let sort = document.querySelector('#sort');
-        let imgAmount = document.querySelector('#display-amount');
-        container.innerHTML = "";
-        fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=9feba22bfaebe544497d5cea5fae9664&tags=${searchField.value}&sort=${sort.value}&per_page=${imgAmount.value}&format=json&nojsoncallback=1`)
-        .then((response) => response.json())
-        .then((data) => {
-            let imgContainer = document.createElement('div');
-            let column = document.createElement('div');
+        $('.search-container').html("");
+        fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=9feba22bfaebe544497d5cea5fae9664&tags=${$('#search-input').val()}&sort=${$('#sort').val()}&per_page=${$('#display-amount').val()}&format=json&nojsoncallback=1`)
+            .then((response) => response.json())
+            .then((data) => {
+                $.fn.loading(false);
+                let imgContainer = document.createElement('div');
+                let column = document.createElement('div');
 
-            let arr = data.photos.photo;
+                let photos = data.photos.photo;
+                photos.forEach((element, index) => {
+                    let img = document.createElement('img');
+                    
+                    img.src = `https://live.staticflickr.com/${element.server}/${element.id}_${element.secret}_${$('#img-size').val()}.jpg`;
+                    img.className = "list-img";
+                    $(img).attr('draggable', 'false');
+                    column.className = "column";
+                    column.append(img);
+                    if (index % (Math.ceil(photos.length / 3)) === 0) {
+                        column = document.createElement('div');
+                        imgContainer.append(column);
+                        column.className = "column";
+                        column.append(img);
+                    }
+                    imgContainer.className = "img-container";
+                    $('.search-container').append(imgContainer);
+                });
+        
+                $('.list-img').hover((e) => {
+                    
+                    const target = $(e.target).parent();
+                    if (e.target instanceof Image) {
+                        if (!$(target).data().selected === 0) return;
+                        e.target.animate({filter: 'blur(6px)' }, 150, target.css('z-index', 101));
+                        
+                    }
+                }, () => $('.column').css('z-index', 1));
 
-            arr.forEach((element, index) => {
-
-                let img = document.createElement('img');
-                img.src = `https://live.staticflickr.com/${element.server}/${element.id}_${element.secret}_${size.value}.jpg`;
-                column.id = "column";
-                column.append(img);
+                $(window).mouseup((e) => {
+                    e.stopPropagation();
+                    const tar = e.target;
+                    if (!$('.img-popup-container').is(tar) && !$('.img-popup-container').has(e.target).length) {
+                        $('.img-popup-container').css('display', 'none');
+                    }
+                });
                 
-
-                        if (index % (Math.ceil(arr.length / 3)) === 0) {
-                            column = document.createElement('div');
-                            column.id = "column";
-                            column.append(img);
-                            imgContainer.append(column);
-                            console.log("test" + index);
-                           
-                        }
-                console.log(Math.floor(arr.length / 22));
-                imgContainer.id = "img-container";
-                container.append(imgContainer);
+                $('img').click((e) => { 
+                    if (!$('.img-popup-container').is(e.target) && !$('.img-popup-container').has(e.target).length) 
+                    e.target.animate({transform: 'scale(1.1)', filter: 'blur(6px)' }, 150, $(e.target).css('z-index', 101));
+                    $('.img-popup-container').css('display', 'block');
+                    $('.img-display').attr("src", $(e.target).attr('src'));
+                    
+                });
             });
-        });
     });
+
+    $.fn.loading = (show) => {
+        if (!show) {
+            $('.loading-container').css('visibility', 'hidden');
+            return;
+        }
+        $('.loading-container').css('display', 'block');
+        $('.loading-container').css('visibility', 'visible');
+        let times = 0;
+        setInterval(function() {
+            times++;
+        $('.loading').animate({rotate: times + '360deg'}, {duration: 1500});
+        }, 100);
+    }
+
 });
