@@ -1,52 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="./js/script.js"></script>
-    <link rel="stylesheet" href="./style/style.css" />
-  </head>
-  <body>
-    <form action="" id="search">
-      <input type="search" id="search-input" placeholder="Search.." />
-      <select name="img-size" id="img-size">
-        <option selected value="n">Size (Small)</option>
-        <option value="n">Small</option>
-        <option value="z">Medium</option>
-        <option value="b">Large</option>
-      </select>
-      <select name="display-amount" id="display-amount">
-        <option selected value="100">Amount (100)</option>
-        <option value="100">100</option>
-        <option value="200">200</option>
-        <option value="500">500</option>
-      </select>
-      <select name="sort" id="sort">
-        <option selected value="relevance">Sort (Relevance)</option>
-        <option value="relevance">Relevance</option>
-        <option value="interestingness-desc">Interestingness</option>
-        <option value="date-posted-desc">Date Posted</option>
-      </select>
-      <button>search</button>
-    </form>
-    <div class="search-container">
-     
-    </div>
-    <div class="loading-container">
-        <div class="loading"></div>
-    </div>
-    <div class="img-popup-container">
 
-      <img class="img-display">
-        
-      </img>
-    
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Search</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="./js/script.js"></script>
+  <link rel="stylesheet" href="./style/style.css" />
+</head>
 
-    
-    
-  </body>
+<body>
+  <form action="" class="search">
+    <input type="search" class="search-input" placeholder="Search.." />
+    <select name="img-size" class="img-size">
+      <option selected value="n">Size (Small)</option>
+      <option value="n">Small</option>
+      <option value="z">Medium</option>
+      <option value="b">Large</option>
+    </select>
+    <select name="display-amount" class="display-amount">
+      <option selected value="100">Amount (100)</option>
+      <option value="100">100</option>
+      <option value="200">200</option>
+      <option value="500">500</option>
+    </select>
+    <select name="sort" class="sort">
+      <option selected value="relevance">Sort (Relevance)</option>
+      <option value="relevance">Relevance</option>
+      <option value="interestingness-desc">Interestingness</option>
+      <option value="date-posted-desc">Date Posted</option>
+    </select>
+    <button>search</button>
+  </form>
+  <div class="search-container">
+
+  </div>
+  <h1 class="search-msg">Welcome to image search.</h1>
+  <div class="loading-container">
+    <div class="loading"></div>
+  </div>
+  <div class="img-popup-container">
+    <img class="img-display">
+    </img>
+  </div>
+</body>
+
 </html>

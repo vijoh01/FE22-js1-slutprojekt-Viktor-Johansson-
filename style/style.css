@@ -9,7 +9,7 @@
     flex-flow: row wrap;
     justify-content: center;
     filter: drop-shadow(0 0 0.75rem black);
-    
+
 }
 
 .img-display {
@@ -17,17 +17,25 @@
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-}   
+}
 
 .loading-container {
+    border: 1px white solid;
+    visibility: hidden;
+}
+
+.loading-container,
+.search-msg {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    display: none;
+    transform: translate(-50%, -50%);
+
     padding: 2rem;
-    border: 1px white solid;
+    color: white;
+    text-align: center;
 }
+
 
 .loading {
     padding: 2rem;
@@ -36,13 +44,13 @@
 
 .img-popup-container {
     display: none;
-    position: fixed; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%,-45%); 
-    overflow: auto; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    overflow: auto;
     max-height: 80%;
-  }
+}
 
 .column {
     max-width: 25%;
@@ -64,15 +72,15 @@
 
 @media screen and (max-width: 800px) {
     .column {
-      max-width: 50%;
+        max-width: 50%;
     }
-  }
-  
-  @media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 600px) {
     .column {
-      max-width: 100%;
+        max-width: 100%;
     }
-  }
+}
 
 body {
     display: flex;
@@ -81,7 +89,7 @@ body {
     background-color: rgba(0, 0, 0, 0.883);
 }
 
-#search {
+.search {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,7 +97,7 @@ body {
     background-color: rgba(0, 0, 0, 0.63);
 }
 
-#search input {
+.search input {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 1.5rem;
     width: 20%;
@@ -102,7 +110,7 @@ body {
     min-width: 10rem;
 }
 
-#search button {
+.search button {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.464);
     border: 1px solid rgba(255, 255, 255, 0.409);
@@ -113,17 +121,19 @@ body {
     font-size: 1.1rem;
 }
 
-#search * {
+.search * {
     margin: 1rem 0.2rem 1rem 0;
 }
 
-#img-size, #display-amount, #sort {
+.img-size,
+.display-amount,
+.sort {
     padding: 0 1rem 0 1rem;
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.464);
     border: 1px solid rgba(255, 255, 255, 0.409);
     color: white;
-    
+
     height: 3rem;
     font-size: 1rem;
 }
